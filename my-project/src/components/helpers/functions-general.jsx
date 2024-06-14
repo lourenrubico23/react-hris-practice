@@ -1,3 +1,5 @@
+export const baseImgUrl = "../../img";
+
 // get the url id parameter
 export const getUrlParam = () => {
     const queryString = window.location.search;
