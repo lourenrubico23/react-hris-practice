@@ -4,6 +4,7 @@ import Attendance from "./components/pages/developer/attendance/Attendance"
 import Leaves from "./components/pages/developer/leaves/Leaves"
 import Overtime from "./components/pages/developer/overtime/Overtime"
 import Task from "./components/pages/developer/task/Task"
+import Navigation from "./components/pages/partials/Navigation"
 
 
 
@@ -21,6 +22,8 @@ function App() {
         <Route path="/task" element={<Task/>}/>
       </Routes>
     </Router>
+
+    
       
     </>
   )

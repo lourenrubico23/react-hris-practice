@@ -1,0 +1,87 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container{
+  @apply max-w-[100rem] px-4 py-2 w-full mx-auto;
+}
+
+@layer components{
+  h1{
+    @apply text-[1.7rem]
+  }
+
+  .btn{
+    @apply py-1 px-2 bg-darkred border border-primary text-white rounded-md hover:bg-white hover:text-primary items-center
+    transition-all duration-500
+  }
+  .btn-transparent{
+    @apply py-1 px-2 bg-transparent border border-gray-400 text-gray-500 rounded-md  items-center
+  }
+}
+
+.header{
+  @apply fixed border-b-primary border-2
+}
+
+.header__wrapper{
+  @apply flex items-center justify-between
+}
+
+.nav{
+  @apply w-full
+}
+
+.nav-link{
+  @apply text-[1.1rem] py-2 px-4 relative 
+}
+
+.nav li:hover{
+  @apply  bg-gradient-to-l from-[#ad397f] from-40% to-[#630b3c] text-white 
+}
+.nav li.active:hover{
+  @apply   from-white
+}
+
+.nav li.active{
+  @apply bg-white text-primary border-l rounded-l-full
+}
+
+.nav li.active::after{
+  @apply content-[""] w-[1.5rem] h-[50%] bg-transparent absolute right-0 rounded-br-xl -top-[21px] 
+  shadow-shadowafter z-[999]
+}
+.nav li.active::before{
+  @apply content-[""] w-[1.5rem] h-[50%] bg-transparent absolute right-0 rounded-tr-xl -bottom-[20px] 
+  shadow-shadowbefore z-[999]
+}
+
+/* Table */
+table{
+  @apply w-full
+}
+table th{
+  @apply px-2
+}
+table td{
+  @apply px-10 py-3 text-left 
+}
+
+/* Input Form */
+.input-wrap{
+  @apply mb-3 relative
+}
+.input-wrap input, textarea, select{
+  @apply block w-full p-2 rounded-md outline-none border-2 focus:border-primary mb-2
+}
+.input-wrap label{
+  @apply absolute -top-4 left-2 bg-white p-1 text-sm text-darkred 
+}
+.input-wrap .check{
+  @apply mb-1
+}
+select option:hover {
+  @apply bg-blue-400
+}
+
