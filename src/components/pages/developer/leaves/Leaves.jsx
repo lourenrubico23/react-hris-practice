@@ -12,7 +12,7 @@ const Leaves = () => {
   return (
     <div>
       <Header/>
-      <aside className=' py-6 w-[220px] h-screen bg-primary text-white fixed top-[2.8rem]'>
+      <aside className='aside-bar'>
         
            <ul className='nav'>
            <li className='nav-link'><Link to="/overview" className='flex items-center gap-5'><MdDashboard />Overview</Link></li>
@@ -25,7 +25,7 @@ const Leaves = () => {
         </ul> 
         
     </aside>
-      <main className='w-[80%] absolute left-[16rem] top-[7rem]'>
+      <main className='main'>
         <h1 className='text-black'>Leaves</h1>
       </main>
     </div>

@@ -7,14 +7,36 @@ import Header from '../../Header'
 import * as Yup from 'yup'
 
 
-const ModalAddTask = ({closeModal, onSubmit}) => {
+const ModalAddTask = ({closeModal, onSubmit, rows}) => {
+  const [check, setCheck] = React.useState(false);
+
+  const handleCheck = () => {
+    if (check){
+      setCheck(false)
+    }else{
+      setCheck(true)
+    }
+    
+  }
+
+  const highestId = Math.max(...rows.map(obj => obj.id)); // for id
+
+  const date = new Date(); //custom date
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const year = date.getFullYear();
+  const formatDate = month + "/" + day + "/" + year
+  
+
   const [item, setItem] = React.useState({
-    id: "",
+    id: highestId + 1,
     client: "",
     taskName: "",
     goal: "",
     billable: "",
     timeSpent: "",
+    status: "Active",
+    created: formatDate.toString(),
   });
 
   const [formError, setFormError] = React.useState({});
@@ -51,8 +73,8 @@ const ModalAddTask = ({closeModal, onSubmit}) => {
   return (
     <>
     <ModalWrapper>
-        <div className='modal w-[340px]  mx-auto '>
-            <div className="modal__body bg-white rounded-[1rem] h-[calc(100vh-190px)]">
+        <div className='modal w-[340px] mx-auto '>
+            <div className="modal__body bg-white rounded-[1rem]">
                 <div className="px-4 py-2 bg-darkred flex justify-between items-center rounded-t-[1rem]">
                   <h3 className='text-white font-semibold'>Create Task</h3>
                   <button className='text-white' onClick={closeModal}><FaTimesCircle /></button>
@@ -60,27 +82,28 @@ const ModalAddTask = ({closeModal, onSubmit}) => {
               <Formik>
                 <Form className='flex flex-col p-4 pt-10'>
                   <div className="input-wrap">
-                    {formError.client && (
+                    {/* {formError.client && (
                           <p className="text-red-500 text-xs mt-1">{formError.client}</p>
-                        )}
+                        )} */}
                     <InputSelect 
                     label="Client"
                     name="client"
                     value={item.client}
                     onChange={handleChange}
                       >
-                        
-                        <option value = "" disabled className='font-semibold'>Client</option>
+                        <optgroup label='Client'> 
+                        <option value="" hidden></option> 
                         <option value = "Frontline Business Solutions" >Frontline Business Solutions</option>
                         <option value = "Client 2">Client 2</option>
                         <option value = "Client 3">Client 3</option>
+                        </optgroup>
                     </InputSelect>
                   </div>
 
                   <div className="input-wrap">
-                  {formError.taskName && (
+                  {/* {formError.taskName && (
                           <p className="text-red-500 text-xs mt-1">{formError.taskName}</p>
-                        )}
+                        )} */}
                     <InputText
                       label="Task Name"
                       type="text"
@@ -101,8 +124,8 @@ const ModalAddTask = ({closeModal, onSubmit}) => {
                       />
                   </div>
 
-                  <div className="flex items-center gap-3">
-                    <input type="checkbox" className='check'/>
+                  <div className="flex items-center gap-3" >
+                    <input type="checkbox" className='check' onClick={handleCheck}/>
                     <span className='text-darkred'>Mark check if <strong>indefinite</strong> time limit</span>
                   </div>
                   <div className="flex items-center gap-3">
@@ -110,8 +133,8 @@ const ModalAddTask = ({closeModal, onSubmit}) => {
                     <span className='text-darkred'>Mark check if <strong>billable</strong></span>
                   </div>
 
-                  <h4 className='text-darkred font-semibold py-4'>Time Goal</h4>
-                  <div className='flex gap-2'>
+                  <h4 className={check ? 'hidden' : 'text-darkred font-semibold py-4'} >Time Goal</h4>
+                  <div className={check ? 'hidden' : 'flex gap-2'}>
                       <div className="input-wrap">
                       <InputText
                       label='Hours'

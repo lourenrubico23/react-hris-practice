@@ -10,7 +10,7 @@ const Header = () => {
             <div className="header__wrapper">
                 <div className='flex items-center gap-[2rem]'>
                   <img src={`${baseImgUrl}/logo.svg`} alt="" />
-                  <h2 className='uppercase'>Human Resource information System</h2>
+                  <h2 className='uppercase font-semibold'>Human Resource information System</h2>
                 </div>
                 <div className='flex items-center gap-5'>
                   <img src="http://via.placeholder.com/50x50" alt="" className='rounded-full' />

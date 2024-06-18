@@ -18,7 +18,7 @@ const Task = () => {
     const [rows, setRows] = useState ( [ 
       { id: "1", client: "fbs", taskName: "n/a", goal: "2hr", overtime: "1hr", billable:"true", timeSpent: "3hrs", created: "2/4/2024", status: "Active"},
       { id: "2", client: "fbs", taskName: "n/a", goal: "2hr", overtime: "1hr", billable:"true", timeSpent: "3hrs", created: "2/4/2024", status: "Active"},
-      { id: "3", client: "sdsdsdasasasasasasd", taskName: "n/a", goal: "2hr", overtime: "1hr", billable:"true", timeSpent: "3hrs", created: "2/4/2024", status: "Active"},
+      { id: "3", client: "sdsdsdasasasasasasd", taskName: "n/a", goal: "2hr", overtime: "1hr", billable:"true", timeSpent: "3hrs", created: "2/4/2024", status: "Inactive"},
     ]);
 
     const handleDelete = (targetIndex) => {
@@ -33,7 +33,7 @@ const Task = () => {
     <>
     <div>
       <Header/>
-      <aside className=' py-6 w-[220px] h-full bg-primary text-white fixed top-[2.8rem]'>
+      <aside className='aside-bar '>
         
            <ul className='nav'>
            <li className='nav-link'><Link to="/overview" className='flex items-center gap-5'><MdDashboard />Overview</Link></li>
@@ -46,8 +46,8 @@ const Task = () => {
         </ul> 
         
     </aside>
-      <main className='w-[80%] absolute left-[16rem] top-[7rem]'>
-        <div className="top-nav flex justify-between border-b border-black border-opacity-20">
+      <main className='main'>
+        <div className="top-nav flex justify-between border-b border-black border-opacity-20 mb-3">
             <div className='flex gap-3 items-center mb-4'>
                 <Link to="#" className='text-primary'>Task</Link>
                 <GoChevronRight />
@@ -62,7 +62,7 @@ const Task = () => {
       </main>
       
     </div>
-    {modalOpen && <ModalAddTask closeModal={() => { setModalOpen(false)}} onSubmit={handleSave}/>}
+    {modalOpen && <ModalAddTask closeModal={() => { setModalOpen(false)}} onSubmit={handleSave} rows={rows}/>}
     </>
   )
 }
